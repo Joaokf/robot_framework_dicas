@@ -21,8 +21,8 @@ Selecionar Intervalo de Datas
     Execute JavaScript    var days=Array.from(document.querySelectorAll("span.custom-day:not(.disabled)")); var start=days.find(d=>d.textContent.trim()==="${dia_inicio}"); if(start) start.parentNode.click(); var end=days.reverse().find(d=>d.textContent.trim()==="${dia_fim}"); if(end) end.parentNode.click();
     Sleep                            2s
 
-## Como Usar:
 
+## Como Usar:
 No seu Test Case, basta chamá‑lo passando as datas de início e fim:
 
 *** Test Cases ***
