@@ -1,6 +1,6 @@
 ## Keyword: Selecionar Intervalo de Datas
 
-Opens the ng‑bootstrap datepicker once and selects both a start and end date in the **same** calendar panel via JavaScript, without closing/reopening between selections.
+Selecionar datas no calendário (date-picker)
 
 ```robotframework
 *** Keywords ***
