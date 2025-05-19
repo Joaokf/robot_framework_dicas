@@ -12,31 +12,18 @@ Selecionar Intervalo de Datas
     Click Element                    xpath=(//span[@id="dateRange"])[1]
     Sleep                            1s
 
-    # Selecionar ano/mês de início
+    # Selecionar ano e mês do início (como só tem um calendário, será o mesmo para as duas datas)
     Select From List By Value        xpath=//select[@title="Select year"]     ${ano_inicio}
     Select From List By Label        xpath=//select[@title="Select month"]    ${mes_inicio}
     Sleep                            1s
 
-    # Selecionar dia de início
-    Execute JavaScript
-    ...    var days = Array.from(document.querySelectorAll("span.custom-day:not(.disabled)"));
-    ...    var start = days.find(d => d.textContent.trim() === "${dia_inicio}");
-    ...    if(start) start.parentNode.click();
+    # Clicar na data de início
+    Click Element    xpath=(//span[contains(@class, 'custom-day') and not(contains(@class, 'disabled')) and normalize-space()='${dia_inicio}'])[1]
+    Sleep            1s
 
-    Sleep                            1s
-
-    # Agora trocar para o mês/ano final
-    Select From List By Value        xpath=//select[@title="Select year"]     ${ano_fim}
-    Select From List By Label        xpath=//select[@title="Select month"]    ${mes_fim}
-    Sleep                            1s
-
-    # Selecionar dia final
-    Execute JavaScript
-    ...    var days = Array.from(document.querySelectorAll("span.custom-day:not(.disabled)"));
-    ...    var end = days.find(d => d.textContent.trim() === "${dia_fim}");
-    ...    if(end) end.parentNode.click();
-
-    Sleep    2s
+    # Se for o mesmo mês/ano, clique na segunda data diretamente
+    Click Element    xpath=(//span[contains(@class, 'custom-day') and not(contains(@class, 'disabled')) and normalize-space()='${dia_fim}'])[last()]
+    Sleep            2s
 
 
 ## Como Usar:
