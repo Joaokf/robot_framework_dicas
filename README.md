@@ -12,17 +12,22 @@ Selecionar Intervalo de Datas
     Click Element                    xpath=(//span[@id="dateRange"])[1]
     Sleep                            1s
 
-    # Selecionar ano e mês do início (como só tem um calendário, será o mesmo para as duas datas)
-    Select From List By Value        xpath=//select[@title="Select year"]     ${ano_inicio}
-    Select From List By Label        xpath=//select[@title="Select month"]    ${mes_inicio}
+    # Seletor ano e mês início
+    Select From List By Value        xpath=(//select[@title="Select year"])[1]    ${ano_inicio}
+    Select From List By Label        xpath=(//select[@title="Select month"])[1]   ${mes_inicio}
     Sleep                            1s
 
-    # Clicar na data de início
-    Click Element    xpath=(//span[contains(@class, 'custom-day') and not(contains(@class, 'disabled')) and normalize-space()='${dia_inicio}'])[1]
+    # Clicar no dia de início pelo aria-label
+    Click Element    xpath=(//div[@class="ngb-dp-day"][@aria-label="${dia_inicio}"])[1]
     Sleep            1s
 
-    # Se for o mesmo mês/ano, clique na segunda data diretamente
-    Click Element    xpath=(//span[contains(@class, 'custom-day') and not(contains(@class, 'disabled')) and normalize-space()='${dia_fim}'])[last()]
+    # Seletor ano e mês fim
+    Select From List By Value        xpath=(//select[@title="Select year"])[1]    ${ano_fim}
+    Select From List By Label        xpath=(//select[@title="Select month"])[1]   ${mes_fim}
+    Sleep                            1s
+
+    # Clicar no dia de fim pelo aria-label
+    Click Element    xpath=(//div[@class="ngb-dp-day"][@aria-label="${dia_fim}"])[1]
     Sleep            2s
 
 
